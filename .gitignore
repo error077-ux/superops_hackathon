@@ -1,0 +1,52 @@
+# ------------------------
+# PYTHON BACKEND
+# ------------------------
+# Virtual environment
+backend/venv/
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+# Environment variables
+backend/.env
+# Database or compiled files
+*.sqlite3
+*.db
+# Logs
+*.log
+
+# ------------------------
+# REACT FRONTEND (Vite)
+# ------------------------
+# Node modules and build output
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+# Environment variables
+frontend/.env
+# Cache
+*.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+vite.config.ts.timestamp*
+vite.config.js.timestamp*
+
+# ------------------------
+# SYSTEM & EDITOR FILES
+# ------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# ------------------------
+# ENV / DEPLOY FILES
+# ------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

@@ -1,0 +1,180 @@
+# policy_rule.yaml
+# 16-rule matrix with explicit priority (1 = highest)
+
+rules:
+
+  - id: r16
+    priority: 1
+    description: "High confidence, low FP, high correlation, high severity"
+    conditions:
+      final_confidence_score: ">=0.5"
+      false_positive_likelihood: "<0.5"
+      correlation_score: ">=80"
+      severity: ["high", "critical"]
+    action: "deny"
+    reason: "Denied (confidence=high, fp=low, correlation=high, severity=high)"
+
+  - id: r15
+    priority: 2
+    description: "High confidence, low FP, high correlation, low severity"
+    conditions:
+      final_confidence_score: ">=0.5"
+      false_positive_likelihood: "<0.5"
+      correlation_score: ">=80"
+      severity: ["low", "medium"]
+    action: "deny"
+    reason: "Denied (confidence=high, fp=low, correlation=high, severity=low)"
+
+  - id: r08
+    priority: 3
+    description: "Low confidence, low FP, high correlation, high severity"
+    conditions:
+      final_confidence_score: "<0.5"
+      false_positive_likelihood: "<0.5"
+      correlation_score: ">=80"
+      severity: ["high", "critical"]
+    action: "deny"
+    reason: "Denied (confidence=low, fp=low, correlation=high, severity=high)"
+
+  - id: r12
+    priority: 4
+    description: "High confidence, high FP, high correlation, high severity"
+    conditions:
+      final_confidence_score: ">=0.5"
+      false_positive_likelihood: ">=0.5"
+      correlation_score: ">=80"
+      severity: ["high", "critical"]
+    action: "quarantine"
+    reason: "Quarantined (confidence=high, fp=high, correlation=high, severity=high)"
+
+  - id: r14
+    priority: 5
+    description: "High confidence, low FP, low correlation, high severity"
+    conditions:
+      final_confidence_score: ">=0.5"
+      false_positive_likelihood: "<0.5"
+      correlation_score: "<80"
+      severity: ["high", "critical"]
+    action: "quarantine"
+    reason: "Quarantined (confidence=high, fp=low, correlation=low, severity=high)"
+
+  - id: r04
+    priority: 6
+    description: "Low confidence, high FP, high correlation, high severity"
+    conditions:
+      final_confidence_score: "<0.5"
+      false_positive_likelihood: ">=0.5"
+      correlation_score: ">=80"
+      severity: ["high", "critical"]
+    action: "quarantine"
+    reason: "Quarantined (confidence=low, fp=high, correlation=high, severity=high)"
+
+  - id: r10
+    priority: 7
+    description: "High confidence, high FP, low correlation, high severity"
+    conditions:
+      final_confidence_score: ">=0.5"
+      false_positive_likelihood: ">=0.5"
+      correlation_score: "<80"
+      severity: ["high", "critical"]
+    action: "quarantine"
+    reason: "Quarantined (confidence=high, fp=high, correlation=low, severity=high)"
+
+  - id: r07
+    priority: 8
+    description: "Low confidence, low FP, high correlation, low severity"
+    conditions:
+      final_confidence_score: "<0.5"
+      false_positive_likelihood: "<0.5"
+      correlation_score: ">=80"
+      severity: ["low", "medium"]
+    action: "quarantine"
+    reason: "Quarantined (confidence=low, fp=low, correlation=high, severity=low)"
+
+  - id: r11
+    priority: 9
+    description: "High confidence, high FP, high correlation, low severity"
+    conditions:
+      final_confidence_score: ">=0.5"
+      false_positive_likelihood: ">=0.5"
+      correlation_score: ">=80"
+      severity: ["low", "medium"]
+    action: "mfa"
+    reason: "MFA required (confidence=high, fp=high, correlation=high, severity=low)"
+
+  - id: r06
+    priority: 10
+    description: "Low confidence, low FP, low correlation, high severity"
+    conditions:
+      final_confidence_score: "<0.5"
+      false_positive_likelihood: "<0.5"
+      correlation_score: "<80"
+      severity: ["high", "critical"]
+    action: "mfa"
+    reason: "MFA required (confidence=low, fp=low, correlation=low, severity=high)"
+
+  - id: r13
+    priority: 11
+    description: "High confidence, low FP, low correlation, low severity"
+    conditions:
+      final_confidence_score: ">=0.5"
+      false_positive_likelihood: "<0.5"
+      correlation_score: "<80"
+      severity: ["low", "medium"]
+    action: "mfa"
+    reason: "MFA required (confidence=high, fp=low, correlation=low, severity=low)"
+
+  - id: r05
+    priority: 12
+    description: "Low confidence, low FP, low correlation, low severity"
+    conditions:
+      final_confidence_score: "<0.5"
+      false_positive_likelihood: "<0.5"
+      correlation_score: "<80"
+      severity: ["low", "medium"]
+    action: "monitor"
+    reason: "Monitored (confidence=low, fp=low, correlation=low, severity=low)"
+
+  - id: r09
+    priority: 13
+    description: "High confidence, high FP, low correlation, low severity"
+    conditions:
+      final_confidence_score: ">=0.5"
+      false_positive_likelihood: ">=0.5"
+      correlation_score: "<80"
+      severity: ["low", "medium"]
+    action: "monitor"
+    reason: "Monitored (confidence=high, fp=high, correlation=low, severity=low)"
+
+  - id: r03
+    priority: 14
+    description: "Low confidence, high FP, high correlation, low severity"
+    conditions:
+      final_confidence_score: "<0.5"
+      false_positive_likelihood: ">=0.5"
+      correlation_score: ">=80"
+      severity: ["low", "medium"]
+    action: "monitor"
+    reason: "Monitored (confidence=low, fp=high, correlation=high, severity=low)"
+
+  - id: r02
+    priority: 15
+    description: "Low confidence, high FP, low correlation, high severity"
+    conditions:
+      final_confidence_score: "<0.5"
+      false_positive_likelihood: ">=0.5"
+      correlation_score: "<80"
+      severity: ["high", "critical"]
+    action: "allow"
+    reason: "Allowed (confidence=low, fp=high, correlation=low, severity=high)"
+
+  - id: r01
+    priority: 16
+    description: "Low confidence, high FP, low correlation, low severity"
+    conditions:
+      final_confidence_score: "<0.5"
+      false_positive_likelihood: ">=0.5"
+      correlation_score: "<80"
+      severity: ["low", "medium"]
+    action: "allow"
+    reason: "Allowed (confidence=low, fp=high, correlation=low, severity=low)"
